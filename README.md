@@ -2,7 +2,6 @@
 This is generator for translating galaxy language
 ## Usage
 ```golang
-import foobar
 
 # returns string roman number
 roman(string)
