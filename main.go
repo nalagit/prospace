@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -29,6 +31,13 @@ glob prok Iron is 782 Credits
 iv iron = 195.5
 I have no idea what you are talking about
 */
+/*
+- we expect the application should be able to read text input, in format of given sample inputs.
+- The the application should be able to process the statement/questions sentences
+- draft the answers for questions accordingly and output result in format of the sample output in given document.
+- You can assume the TYPE of questions are limited to only those shown in the sample input.
+- But the galaxy number and material we would likely use totally different content as testing input to test your application.
+*/
 
 const (
 	iron   float32 = 195.5
@@ -37,11 +46,13 @@ const (
 )
 
 func main() {
-	translator("pish tegj glob glob")
-	translator("glob prok gold")
-	translator("glob prok silver")
-	translator("glob prok iron")
-	translator("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?")
+	var input string
+	fmt.Print("Input galaxy sentence: ")
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		input = scanner.Text()
+	}
+	translator(input)
 }
 
 func translator(input string) {
@@ -131,7 +142,7 @@ func romantoint(str string) float32 {
 
 func currency(str string) float32 {
 	var parsed []string
-	var temp float32
+	var temp float32 = 0
 	parsed = strings.Split(str, " ")
 	for _, data := range parsed {
 		if data == "iron" {
